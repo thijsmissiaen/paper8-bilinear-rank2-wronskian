@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0.0",
+  "name": "bilinear-rank2-wronskian",
+  "title": "Bilinear Rank-2 Factorization of Integrated Wronskian Kernels, Pure-Square Completion, and the 1+2d > 1 Montgomery-Vaughan Exponent Jump in the Critical Strip",
+  "version": "1.0.0",
+  "author": {
+    "name": "Thijs Missiaen",
+    "affiliation": "Independent Researcher, Belgium",
+    "email": "thijs.missiaen@gmail.com",
+    "orcid": "0009-0007-3678-0810"
+  },
+  "repository": "https://github.com/thijsmissiaen/paper8-bilinear-rank2-wronskian",
+  "license": "MIT",
+  "msc_2020": ["11M06", "11N36", "30D15", "42A05"],
+  "entrypoints": {
+    "skill": ".agents/skills/bilinear-rank2-wronskian/SKILL.md",
+    "manuscript_tex": "paper/paper8_bilinear_rank2_wronskian.tex",
+    "manuscript_pdf": "paper/paper8_bilinear_rank2_wronskian.pdf",
+    "verification_script": "scripts/verify_paper8_bilinear_rank2_wronskian.py",
+    "figures": [
+      "figures/fig1_bilinear_rank2_and_pure_square.png",
+      "figures/fig2_exponent_jump_montgomery_vaughan.png"
+    ]
+  },
+  "core_theorems": [
+    "Theorem 1.1: Bilinear Rank-2 Wronskian Factorization, Pure-Square Completion, and the 1 + 2d > 1 Montgomery-Vaughan Exponent Jump",
+    "Theorem 2.1: Universal (mn)^{-d} <= 2^{-d} Hyperbolic Diagonal Advantage in the Riemann-Siegel Mirror Gradient",
+    "Proposition 2.2: Order-r Generalized von Mangoldt Scaling, Parity Alternation, Stirling-Dirichlet Convolution Law, and Radical Bound",
+    "Theorem 3.1: Integrated Sieved Energy Clamp, Hyperbolic Low-Pass Filter F_int(x), and cosh^{-2}(dL/4) Remainder Damping",
+    "Theorem 3.2: Exact Bilinear Rank-2 Factorization of Off-Diagonal Wronskian Kernels, O(N) Reduction, and Phase Transition at d = 1/4",
+    "Theorem 4.1: Pair-by-Pair -1 Boundary Cancellation, Pure-Square Completion ||psi_1 + Psi_{>=2}||^2, and Elimination of 1 + sqrt(2)",
+    "Theorem 5.1: The 1 + 2d > 1 Exponent Jump in L^2, Polynomial Reflected Extinction N(t)^{-2d}, and Collapse of theta_MV^{(r)}(d,t) -> 0",
+    "Theorem 5.2: Preissmann-Montgomery-Vaughan Hilbert Inequality on Sub-Riemann-Siegel Windows and Gallagher-Sobolev Pointwise Transfer"
+  ],
+  "verification_command": "python scripts/verify_paper8_bilinear_rank2_wronskian.py"
+}

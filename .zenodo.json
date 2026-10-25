@@ -1,0 +1,36 @@
+{
+  "title": "Bilinear Rank-2 Factorization of Integrated Wronskian Kernels, Pure-Square Completion, and the 1+2d > 1 Montgomery-Vaughan Exponent Jump in the Critical Strip",
+  "description": "Paper VIII of the series on the Transverse Wronskian of Riemann's Xi-Function. Establishes the universal (mn)^{-d} <= 2^{-d} hyperbolic diagonal advantage, order-r generalized von Mangoldt scaling b_n^{(r)}(X) = Lambda_r(n)/(ln X)^r and Stirling-Dirichlet convolution laws, the exact bilinear rank-2 factorization w_{mn}^{int}(d,t) = 2(cosh(d*omega_m)cosh(d*omega_n)-1)/d^2 reducing O(N(t)^2) off-diagonal double sums to O(N(t)) one-dimensional prefix sums with an Euler-Maclaurin phase transition N(t)^{1-4d} at d = 1/4 (sigma = 3/4), the pure-square completion ||psi_1 + Psi_{>=2}||^2 that cancels the -1 boundary term identically pair by pair against the critical-line ground state and eliminates the 1 + sqrt(2) root penalty, and the 1 + 2d > 1 exponent jump in L^2 combined with Preissmann's sharp Montgomery-Vaughan Hilbert constant c_MV = (4/3)*sqrt(6) and Gallagher-Sobolev pointwise transfer up to t = 10^8.",
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "creators": [
+    {
+      "name": "Missiaen, Thijs",
+      "affiliation": "Independent Researcher, Belgium",
+      "orcid": "0009-0007-3678-0810"
+    }
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/thijsmissiaen/paper8-bilinear-rank2-wronskian",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ],
+  "access_right": "open",
+  "license": "MIT",
+  "keywords": [
+    "Riemann Xi-function",
+    "Transverse Wronskian",
+    "Bilinear rank-2 factorization",
+    "Pure-square completion",
+    "Generalized von Mangoldt function",
+    "Montgomery-Vaughan Hilbert inequality",
+    "Preissmann constant",
+    "Gallagher-Sobolev inequality",
+    "MSC 11M06",
+    "MSC 11N36",
+    "MSC 30D15"
+  ],
+  "version": "1.0.0"
+}
