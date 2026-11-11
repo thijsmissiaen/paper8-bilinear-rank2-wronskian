@@ -9,24 +9,35 @@ description: Mathematical reference and anti-overclaim skill for Paper VIII. Cov
 
 Throughout the series ($s = \frac{1}{2} + d + \mathrm{i}t$, $z = t - \mathrm{i}d$, $d \ge 0{}$):
 
-$$\Xi(z) = 8\int_0^{\infty} \Phi(u)\cos(2zu)\,\mathrm{d}u = 4\int_{-\infty}^{\infty} \Phi(u)\cos(2zu)\,\mathrm{d}u,$$
+$$
+\Xi(z) = 8\int_0^{\infty} \Phi(u)\cos(2zu)\mathrm{d}u = 4\int_{-\infty}^{\infty} \Phi(u)\cos(2zu)\mathrm{d}u,
+$$
 
-$$W(d,t) = \frac{1}{2}\partial_d\lvert\Xi(t - \mathrm{i}d)\rvert^2 = R I_t - I R_t = 16\int_0^{\infty} y\sinh(2dy)\,I(y,t)\,\mathrm{d}y, \qquad \widetilde{W}(d,t) := \frac{W(d,t)}{d}.$$
+$$
+W(d,t) = \frac{1}{2}\partial_d\lvert\Xi(t - \mathrm{i}d)\rvert^2 = R I_t - I R_t = 16\int_0^{\infty} y\sinh(2dy)I(y,t)\mathrm{d}y, \qquad \widetilde{W}(d,t) := \frac{W(d,t)}{d}.
+$$
 
 ## 2. Genuine Surviving Mathematical Identities
 
-1. **Squarefree-Divisor Sieve $\widetilde{\Lambda} _ r(n)$ vs Bombieri–Selberg $\Lambda _ r^{\mathrm{BS}}(n)$ (Theorem 2.3):**
-   - For $P _ r(x) = 1 - (1-x)^r$, $\zeta(s)M _ X^{(r)}(s) = \sum _ {n=1}^{\infty} b _ n^{(r)}(X)n^{-s}$ satisfies $b _ n^{(r)}(X) = \widetilde{\Lambda} _ r(n)/(\ln X)^r$ **only for $2 \le n \le X$**, where $\widetilde{\Lambda} _ r(n) := -\sum _ {k \mid n}\mu(k)(\ln k)^r$ generates $(-1)^{r+1}\zeta(s)(\zeta^{-1})^{(r)}(s)$.
-   - $\widetilde{\Lambda} _ r(n)$ vanishes for $\omega(n) > r$, satisfies $(-1)^{\omega(n)-1}\widetilde{\Lambda} _ r(n) > 0$ for $1 \le \omega(n) \le r$, obeys $\lvert\widetilde{\Lambda} _ r(n)\rvert \le (\ln\mathrm{rad}(n))^r$, and has unsigned Stirling asymptotics $\sum _ {n \le x}\lvert\widetilde{\Lambda} _ r(n)\rvert \sim r x(\ln x)^{r-1}$.
-   - By contrast, Bombieri–Selberg's generalized von Mangoldt function $\Lambda _ r^{\mathrm{BS}}(n) := \sum _ {d \mid n}\mu(d)(\ln(n/d))^r$ generates $(-1)^r\zeta^{(r)}(s)/\zeta(s)$, satisfies $\Lambda _ r^{\mathrm{BS}} = \Lambda _ {r-1}^{\mathrm{BS}}\ln + \Lambda _ {r-1}^{\mathrm{BS}} * \Lambda$ and $0 \le \Lambda _ r^{\mathrm{BS}}(n) \le (\ln n)^r$, and relates to $\widetilde{\Lambda} _ 2$ via $\widetilde{\Lambda} _ 2 = \Lambda _ 2^{\mathrm{BS}} - 2(\Lambda * \Lambda)$ (at $n = 8 = 2^3$, $\widetilde{\Lambda} _ 2(8) = (\ln 2)^2$ whereas $\Lambda _ 2^{\mathrm{BS}}(8) = 5(\ln 2)^2{}$).
-2. **Exact Bilinear Rank-2 Factorization (Theorem 3.1):**
-   - Under $\frac{2}{d^2}\int_0^d u\,(\cdot)\,\mathrm{d}u$, the hyperbolic cross-term weight factors identically as
+### 2.1 Squarefree-Divisor Sieve $\widetilde{\Lambda} _ r(n)$ vs Bombieri–Selberg $\Lambda _ r^{\mathrm{BS}}(n)$ (Theorem 2.3)
 
-$$w_{mn}^{\mathrm{int}}(d,t) \equiv \frac{2\bigl(\cosh(d\omega_m(t))\cosh(d\omega_n(t)) - 1\bigr)}{d^2},$$
+- For $P _ r(x) = 1 - (1-x)^r$, $\zeta(s)M _ X^{(r)}(s) = \sum _ {n=1}^{\infty} b _ n^{(r)}(X)n^{-s}$ satisfies $b _ n^{(r)}(X) = \widetilde{\Lambda} _ r(n)/(\ln X)^r$ **only for $2 \le n \le X$**, where $\widetilde{\Lambda} _ r(n) := -\sum _ {k \mid n}\mu(k)(\ln k)^r$ generates $(-1)^{r+1}\zeta(s)(\zeta^{-1})^{(r)}(s)$.
+- $\widetilde{\Lambda} _ r(n)$ vanishes for $\omega(n) > r$, satisfies $(-1)^{\omega(n)-1}\widetilde{\Lambda} _ r(n) > 0$ for $1 \le \omega(n) \le r$, obeys $\lvert\widetilde{\Lambda} _ r(n)\rvert \le (\ln\mathrm{rad}(n))^r$, and has unsigned Stirling asymptotics $\sum _ {n \le x}\lvert\widetilde{\Lambda} _ r(n)\rvert \sim r x(\ln x)^{r-1}$.
+- By contrast, Bombieri–Selberg's generalized von Mangoldt function $\Lambda _ r^{\mathrm{BS}}(n) := \sum _ {d \mid n}\mu(d)(\ln(n/d))^r$ generates $(-1)^r\zeta^{(r)}(s)/\zeta(s)$, satisfies $\Lambda _ r^{\mathrm{BS}} = \Lambda _ {r-1}^{\mathrm{BS}}\ln + \Lambda _ {r-1}^{\mathrm{BS}} \ast \Lambda$ and $0 \le \Lambda _ r^{\mathrm{BS}}(n) \le (\ln n)^r$, and relates to $\widetilde{\Lambda} _ 2$ via $\widetilde{\Lambda} _ 2 = \Lambda _ 2^{\mathrm{BS}} - 2(\Lambda \ast \Lambda)$ (at $n = 8 = 2^3$, $\widetilde{\Lambda} _ 2(8) = (\ln 2)^2$ whereas $\Lambda _ 2^{\mathrm{BS}}(8) = 5(\ln 2)^2{}$).
 
-   - This reduces $\mathcal{O}(N^2)$ off-diagonal double sums to $\mathcal{O}(N)$ prefix sums via $\sum _ {1 \le m < n \le N} a _ m a _ n(\cosh(d\omega _ m)\cosh(d\omega _ n)-1) = \frac{1}{2}[(\sum a _ n\cosh(d\omega _ n))^2 - (\sum a _ n)^2 - \sum a _ n^2\sinh^2(d\omega _ n)]$.
-3. **Euclidean Harmonic Representation (Theorem 4.1(i)):**
-   - Combining $w _ {mn}^{\mathrm{int}}(d,t)$ with the $d = 0$ boundary term cancels the $-1$ offset pair by pair and yields $\frac{1}{4}\lvert S _ N(d,t)\rvert^2 = \lVert\psi _ 1(d,t) + \Psi _ {\ge 2}(d,t)\rVert^2$ in $\mathbb{R}^2$.
+### 2.2 Exact Bilinear Rank-2 Factorization (Theorem 3.1)
+
+Under $\frac{2}{d^2}\int _ 0^d u(\cdot)\mathrm{d}u$, the hyperbolic cross-term weight factors identically as
+
+$$
+w_{mn}^{\mathrm{int}}(d,t) \equiv \frac{2\bigl(\cosh(d\omega_m(t))\cosh(d\omega_n(t)) - 1\bigr)}{d^2},
+$$
+
+which reduces $\mathcal{O}(N^2)$ off-diagonal double sums to $\mathcal{O}(N)$ prefix sums via $\sum _ {1 \le m < n \le N} a _ m a _ n(\cosh(d\omega _ m)\cosh(d\omega _ n)-1) = \frac{1}{2}[(\sum a _ n\cosh(d\omega _ n))^2 - (\sum a _ n)^2 - \sum a _ n^2\sinh^2(d\omega _ n)]$.
+
+### 2.3 Euclidean Harmonic Representation (Theorem 4.1(i))
+
+Combining $w _ {mn}^{\mathrm{int}}(d,t)$ with the $d = 0$ boundary term cancels the $-1$ offset pair by pair and yields $\frac{1}{4}\lvert S _ N(d,t)\rvert^2 = \lVert\psi _ 1(d,t) + \Psi _ {\ge 2}(d,t)\rVert^2$ in $\mathbb{R}^2$.
 
 ## 3. Critical Red-Team Obstructions (Never Repeat Falsified Claims)
 
