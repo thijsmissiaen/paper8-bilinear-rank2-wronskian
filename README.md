@@ -1,5 +1,6 @@
 # Bilinear Rank-2 Factorization of Dirichlet Energy Kernels, Reverse-Triangle and Sieve-Horizon Obstructions, Preissmann–Montgomery–Vaughan $L^2$ Bounds, and Failure of Pointwise Gallagher Transfer
 
+**DOI (Zenodo / CERN):** [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23645887.svg)](https://doi.org/10.5281/zenodo.23645887) [`10.5281/zenodo.23645887`](https://doi.org/10.5281/zenodo.23645887)  
 **Author:** Thijs Missiaen ([ORCID: 0009-0007-3678-0810](https://orcid.org/0009-0007-3678-0810))  
 **Manuscript:** [`paper/paper8_bilinear_rank2_wronskian.pdf`](paper/paper8_bilinear_rank2_wronskian.pdf) (11 pages, AMS-LaTeX)  
 **Verification Suite:** [`scripts/verify_paper8_bilinear_rank2_wronskian.py`](scripts/verify_paper8_bilinear_rank2_wronskian.py) (`mpmath.mp.dps = 50`, `mpmath.iv.dps = 35`)  

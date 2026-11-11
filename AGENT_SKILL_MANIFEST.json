@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "name": "bilinear-rank2-wronskian",
   "title": "Bilinear Rank-2 Factorization of Dirichlet Energy Kernels, Reverse-Triangle and Sieve-Horizon Obstructions, Preissmann-Montgomery-Vaughan L^2 Bounds, and Failure of Pointwise Gallagher Transfer",
-  "version": "2.0.0",
+  "version": "8.1.0",
   "author": {
     "name": "Thijs Missiaen",
     "affiliation": "Independent Researcher, Belgium",
