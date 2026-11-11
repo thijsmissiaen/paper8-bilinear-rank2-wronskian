@@ -1,72 +1,41 @@
 ---
 name: bilinear-rank2-wronskian
-description: Scientific knowledge skill for Paper VIII of the Transverse Wronskian series on Riemann's Xi-function. Contains the proven analytical identities for the (mn)^{-d} <= 2^{-d} hyperbolic diagonal advantage, order-r generalized von Mangoldt scaling and Stirling-Dirichlet convolution laws, the exact bilinear rank-2 factorization w_{mn}^{int}(d,t) = 2(cosh(d*omega_m)cosh(d*omega_n)-1)/d^2 reducing O(N(t)^2) off-diagonal sums to O(N(t)) one-dimensional sums with an Euler-Maclaurin phase transition N(t)^{1-4d} at d = 1/4 (sigma = 3/4), the pure-square completion ||psi_1 + Psi_{>=2}||^2 that cancels the -1 boundary term pair by pair against the critical-line ground state and eliminates the 1 + sqrt(2) root penalty, and the 1 + 2d > 1 exponent jump in L^2 combined with Preissmann's sharp Montgomery-Vaughan Hilbert constant c_MV = (4/3)*sqrt(6) and Gallagher-Sobolev pointwise transfer up to t = 10^8.
+description: Mathematical reference and anti-overclaim skill for Paper VIII. Covers canonical Wronskian normalization, the distinction between the squarefree-divisor sieve tilde_Lambda_r(n) and Bombieri-Selberg's Lambda_r^{BS}(n), the n > X sieve-horizon breakdown, exact bilinear rank-2 factorization of integrated cross-term kernels, the sinh(dL/2) reverse-triangle obstruction, Preissmann's true Hilbert constant pi*sqrt(1 + (2/3)*sqrt(6/5)) = 4.1324743621, and why Montgomery-Vaughan L^2 window averages yield Bohr-Landau/Carlson zero-density bounds rather than pointwise Gallagher positivity.
 ---
 
-# Bilinear Rank-2 Factorization of Integrated Wronskian Kernels, Pure-Square Completion, and the $1+2d > 1$ Montgomery–Vaughan Exponent Jump in the Critical Strip (Paper VIII)
+# Bilinear Rank-2 Dirichlet Energy Kernels, Sieve-Horizon and Reverse-Triangle Obstructions, and Preissmann–Montgomery–Vaughan $L^2$ Bounds (Paper VIII)
 
-## 1. Scope and Mathematical Architecture
+## 1. Canonical Wronskian Normalization
 
-This skill encapsulates the analytical theorems, exact arithmetic identities, directed-rounding `mpmath.iv` interval-arithmetic certifications, and GPU continuum verification procedures of **Paper VIII** in the series on the Transverse Wronskian of Riemann's $\Xi$-Function (author: Thijs Missiaen, ORCID: [0009-0007-3678-0810](https://orcid.org/0009-0007-3678-0810)). Paper VIII resolves the off-diagonal cross-term problem in the Riemann–Siegel mirror sum of length $N(t) = \lfloor\sqrt{t/2\pi}\rfloor$ across four analytical pillars:
+Throughout the series ($s = \frac{1}{2} + d + \mathrm{i}t$, $z = t - \mathrm{i}d$, $d \ge 0{}$):
 
-1. **The $(mn)^{-d} \le 2^{-d}$ Hyperbolic Diagonal Advantage and Order $r$ Generalized von Mangoldt Scaling (Section 2)**: In the parity-reduced transverse gradient $\frac{1}{2d}\partial_d\widetilde{\mathcal{Z}} _ N(d,t)$, every off-diagonal pair $1 \le m < n \le N(t)$ has $mn \ge 2$ and satisfies the universal hyperbolic diagonal advantage $\mathcal{H} _ {mn}^+(d,t)/\mathcal{D} _ {1,1}(d,t) < (1 - \frac{\ln(mn)}{\ln(t/2\pi)})(mn)^{-d} < (mn)^{-d} \le 2^{-d} < 1$ for all $d > 0$. Under the smooth order $r$ Möbius filter $P_r(x) = 1 - (1-x)^r$, the sieved coefficients obey $b_1^{(r)}(X) \equiv 1$ and $b_n^{(r)}(X) = \frac{\Lambda_r(n)}{(\ln X)^r}$ ($2 \le n \le X$), alongside the parity alternation law $\lvert\Lambda_r(n)\rvert \equiv (-1)^{\omega(n)-1}\Lambda_r(n) \ge 0$, the Stirling–Dirichlet convolution asymptotics $\sum _ {n \le x}\lvert\Lambda_r(n)\rvert \sim r x(\ln x)^{r-1}$ via unsigned Stirling numbers of the first kind $c _ {r,m} = \frac{s(r,m)}{\Gamma(r)}$, and the universal radical bound $\lvert\Lambda_r(n)\rvert \le (\ln\mathrm{rad}(n))^r \le (\ln n)^r$.
-2. **Exact Bilinear Rank-2 Factorization of Integrated Wronskian Kernels and the Phase Transition at $d = \frac{1}{4}$ (Section 3)**: Under the hyperbolic low-pass filter $\mathcal{F} _ {\mathrm{int}}(x) = \frac{\tanh(x/2)}{x/2} \in (0, 1)$ of the integrated sieved energy clamp $\widetilde{\mathcal{E}} _ {\mathcal{M}}(d,t) = \frac{1}{d^2}\lvert\Xi _ {\mathcal{M}}(t)\rvert^2 + \frac{2}{d^2}\int_0^d u \widetilde{W} _ {\mathcal{M}}(u,t) \mathrm{d}u$, the integrated Gabcke–Olver remainder is damped relative to the leading diagonal by $\cosh^{-2}(\frac{1}{4}dL) < 1$, and the off-diagonal weight factors identically without approximation into a bilinear rank-2 form:
+$$\Xi(z) = 8\int_0^{\infty} \Phi(u)\cos(2zu)\,\mathrm{d}u = 4\int_{-\infty}^{\infty} \Phi(u)\cos(2zu)\,\mathrm{d}u,$$
 
-$$w _ {mn}^{\mathrm{int}}(d,t) \equiv \frac{2\left(\cosh\left(d\omega_m(t)\right)\cosh\left(d\omega_n(t)\right) - 1\right)}{d^2} \qquad \left(\omega_n(t) = \frac{1}{2}\ln\frac{t}{2\pi n^2}\right).$$
+$$W(d,t) = \frac{1}{2}\partial_d\lvert\Xi(t - \mathrm{i}d)\rvert^2 = R I_t - I R_t = 16\int_0^{\infty} y\sinh(2dy)\,I(y,t)\,\mathrm{d}y, \qquad \widetilde{W}(d,t) := \frac{W(d,t)}{d}.$$
 
-This reduces the $\binom{N(t)}{2}$ double sums $S _ {1,\mathrm{off}}^{\mathrm{int},(r)}$ and $S _ {2,\mathrm{off}}^{\mathrm{int},(r)}$ to $\mathcal{O}(N(t))$ one-dimensional sums $\Sigma _ {\cosh}^{(r)}(d,t)$ and $\Sigma_0^{(r)}(t)$ (certifying all $7{,}954{,}066$ cross-pairs at $t = 10^8$, $N = 3989$, in $19.7 \mathrm{ms}$) and reveals the Euler–Maclaurin phase transition $S _ {2,\mathrm{off}}^{\mathrm{int},(r)}/(\mathcal{D} _ {1,1}^{\mathrm{int}})^2 \propto N(t)^{1-4d}(\ln N(t))^{2(r-1)}$ at $d = \frac{1}{4}$ ($\sigma = \frac{3}{4}$).
-3. **Pure-Square Completion, Pair-by-Pair $-1$ Boundary Cancellation, and Identical Elimination of $1 + \sqrt{2}$ (Section 4)**: When the critical-line ground-state energy $\mathcal{G} _ 0(d,t) = \frac{1}{d^2}\lvert\Xi _ {\mathcal{M},\mathrm{main}}(t)\rvert^2$ is combined with the Wronskian integral $\mathcal{I} _ {\mathrm{int}}(d,t)$, the $-1$ boundary term in $w _ {mn}^{\mathrm{int}}(d,t) = \frac{2}{d^2}(\cosh(d\omega_m)\cosh(d\omega_n) - 1)$ cancels identically pair by pair against $\frac{2}{d^2}\cos\phi_m\cos\phi_n$ at $u = 0$. Consequently, the entire higher-shell $(m,n \ge 2)$ sector forms a non-negative pure square with a PLUS sign ($\mathcal{E} _ {\ge 2}(d,t) \equiv +\frac{1}{d^2}\lVert\Psi _ {\ge 2}(d,t)\rVert^2 \ge 0$), transforming $1 - 2Y - Y^2 = 0$ into the completed square $(1 - Y)^2 = 1 - 2Y + Y^2 \ge 0$, eliminating the root penalty $1 + \sqrt{2} = 2.41421356\dots$ identically, and driving $X _ {\mathrm{krit}}^{\mathrm{sq},(3)}(0.10, 10^4) = 9.992470 < 10 \ll N(10^4) = 39$ ($\theta _ {\mathrm{sq}}^{(3)} = 0.312220 < \frac{1}{3}$) and $X _ {\mathrm{krit}}^{\mathrm{sq},(3)}(0.20, 10^4) = 19.442212 < 39$ ($\theta _ {\mathrm{sq}}^{(3)} = 0.402504 < \frac{1}{2}$).
-4. **The $1 + 2d > 1$ Exponent Jump in $L^2$ and Preissmann–Montgomery–Vaughan Hilbert Bounds up to $t = 10^8$ (Section 5)**: Whereas the phase-blind $L^1$ sum $\sum _ {n=2}^{N(t)} \lvert b_n\rvert n^{-(1/2+d)} \asymp N(t)^{1/2-d}$ diverges for $0 < d < \frac{1}{2}$ because $\frac{1}{2} + d < 1$, the quadratic $L^2$ diagonal $\mathcal{E} _ {\mathrm{diag}}^{\mathrm{fwd}}(d,t) = \sum _ {n=2}^{N(t)} b_n^2 n^{-(1+2d)} < \sum _ {n=2}^{\infty} b_n^2 n^{-(1+2d)} < \infty$ possesses the convergent exponent $1 + 2d > 1$ across the entire critical strip $d > 0$, while the reflected diagonal $\mathcal{E} _ {\mathrm{diag}}^{\mathrm{ref}}(d,t) < \frac{\max b_n^2}{2d}N(t)^{-2d} \to 0$ decays polynomially to zero. Combining this with Preissmann's sharp Montgomery–Vaughan Hilbert constant $c _ {\mathrm{MV}} = \frac{4}{3}\sqrt{6} \approx 3.2659863237$ on sub-Riemann–Siegel windows $\Delta T _ {\mathrm{MV}}(d,t) \asymp N(t)^{1-2d} = o(t^{1/2})$ ($\mathcal{W} _ {\mathrm{MV}}^{\mathrm{fwd}}(d,t) = \sum _ {n=2}^{N(t)} b_n^2 n^{-2d}$) and Gallagher's one-dimensional Sobolev inequality proves that $X _ {\mathrm{MV},\infty}^{(r)}(d) = \mathcal{O}(1)$ is finite and $t$-independent, forcing $\theta _ {\mathrm{MV}}^{(r)}(d,t) = \mathcal{O}(1/\ln t) \to 0$ as $t \to \infty$.
+## 2. Genuine Surviving Mathematical Identities
 
-## 2. Canonical Identities and Theorems
+1. **Squarefree-Divisor Sieve $\widetilde{\Lambda} _ r(n)$ vs Bombieri–Selberg $\Lambda _ r^{\mathrm{BS}}(n)$ (Theorem 2.3):**
+   - For $P _ r(x) = 1 - (1-x)^r$, $\zeta(s)M _ X^{(r)}(s) = \sum _ {n=1}^{\infty} b _ n^{(r)}(X)n^{-s}$ satisfies $b _ n^{(r)}(X) = \widetilde{\Lambda} _ r(n)/(\ln X)^r$ **only for $2 \le n \le X$**, where $\widetilde{\Lambda} _ r(n) := -\sum _ {k \mid n}\mu(k)(\ln k)^r$ generates $(-1)^{r+1}\zeta(s)(\zeta^{-1})^{(r)}(s)$.
+   - $\widetilde{\Lambda} _ r(n)$ vanishes for $\omega(n) > r$, satisfies $(-1)^{\omega(n)-1}\widetilde{\Lambda} _ r(n) > 0$ for $1 \le \omega(n) \le r$, obeys $\lvert\widetilde{\Lambda} _ r(n)\rvert \le (\ln\mathrm{rad}(n))^r$, and has unsigned Stirling asymptotics $\sum _ {n \le x}\lvert\widetilde{\Lambda} _ r(n)\rvert \sim r x(\ln x)^{r-1}$.
+   - By contrast, Bombieri–Selberg's generalized von Mangoldt function $\Lambda _ r^{\mathrm{BS}}(n) := \sum _ {d \mid n}\mu(d)(\ln(n/d))^r$ generates $(-1)^r\zeta^{(r)}(s)/\zeta(s)$, satisfies $\Lambda _ r^{\mathrm{BS}} = \Lambda _ {r-1}^{\mathrm{BS}}\ln + \Lambda _ {r-1}^{\mathrm{BS}} * \Lambda$ and $0 \le \Lambda _ r^{\mathrm{BS}}(n) \le (\ln n)^r$, and relates to $\widetilde{\Lambda} _ 2$ via $\widetilde{\Lambda} _ 2 = \Lambda _ 2^{\mathrm{BS}} - 2(\Lambda * \Lambda)$ (at $n = 8 = 2^3$, $\widetilde{\Lambda} _ 2(8) = (\ln 2)^2$ whereas $\Lambda _ 2^{\mathrm{BS}}(8) = 5(\ln 2)^2{}$).
+2. **Exact Bilinear Rank-2 Factorization (Theorem 3.1):**
+   - Under $\frac{2}{d^2}\int_0^d u\,(\cdot)\,\mathrm{d}u$, the hyperbolic cross-term weight factors identically as
 
-### 2.1 Hyperbolic Diagonal Advantage and Order $r$ Generalized von Mangoldt Scaling (Theorem 2.1 & Proposition 2.2)
+$$w_{mn}^{\mathrm{int}}(d,t) \equiv \frac{2\bigl(\cosh(d\omega_m(t))\cosh(d\omega_n(t)) - 1\bigr)}{d^2},$$
 
-For $t > 4\pi$, $L := \ln(t/2\pi)$, $N(t) = \lfloor\sqrt{t/2\pi}\rfloor$, $\omega_n(t) = \frac{1}{2}\ln\frac{t}{2\pi n^2}$, and $\omega _ {mn}^+(t) = \frac{1}{2}\ln\frac{t}{2\pi mn}$, the hyperbolic main weight $\mathcal{H} _ {mn}^+(d,t) := \frac{1}{d}\omega _ {mn}^+(t)\sinh(2d\omega _ {mn}^+(t))$ and ground-state diagonal $\mathcal{D} _ {1,1}(d,t) := \frac{1}{d}\omega_1(t)\sinh(2d\omega_1(t))$ obey the exact decomposition:
+   - This reduces $\mathcal{O}(N^2)$ off-diagonal double sums to $\mathcal{O}(N)$ prefix sums via $\sum _ {1 \le m < n \le N} a _ m a _ n(\cosh(d\omega _ m)\cosh(d\omega _ n)-1) = \frac{1}{2}[(\sum a _ n\cosh(d\omega _ n))^2 - (\sum a _ n)^2 - \sum a _ n^2\sinh^2(d\omega _ n)]$.
+3. **Euclidean Harmonic Representation (Theorem 4.1(i)):**
+   - Combining $w _ {mn}^{\mathrm{int}}(d,t)$ with the $d = 0$ boundary term cancels the $-1$ offset pair by pair and yields $\frac{1}{4}\lvert S _ N(d,t)\rvert^2 = \lVert\psi _ 1(d,t) + \Psi _ {\ge 2}(d,t)\rVert^2$ in $\mathbb{R}^2$.
 
-$$\sinh\left(2d\omega _ {mn}^+(t)\right) \equiv (mn)^{-d}\sinh\left(2d\omega_1(t)\right) - \sinh\left(d\ln(mn)\right)\left(\frac{t}{2\pi}\right)^{-d},$$
+## 3. Critical Red-Team Obstructions (Never Repeat Falsified Claims)
 
-whence for every off-diagonal pair $1 \le m < n \le N(t)$ ($mn \ge 2$) and every $d > 0$:
+1. **Sieve-Horizon Breakdown for $n > X$:** For every prime $p > X$, $b _ p^{(r)}(X) = 1$ (undamped $\mathcal{O}(1){}$), and for composite $n > X$ missing divisors $k > X$ destroy $\omega(n) > r$ vanishing ($b _ {30}^{(2)}(10) = -0.79869655 \neq 0$). One **cannot** assume $b _ n^{(r)}(X) = \widetilde{\Lambda} _ r(n)/(\ln X)^r$ on $2 \le n \le N(t)$ when $X < N(t)$.
+2. **Reverse-Triangle $\cosh$ vs $\sinh$ Error:** $\lVert\psi _ 1(d,t)\rVert^2 = \sinh^2(dL/2) + \cos^2\phi _ 1(t)$ has **minimum** $\sinh(dL/2)$ (attained whenever $\cos\phi _ 1(t) = 0$), **not** $\cosh(dL/2)$. Furthermore, omitting $\max(0, \cdot)$ before squaring $(\lVert\psi _ 1\rVert - \lVert\Psi _ {\ge 2}\rVert)$ is invalid. Since $\Sigma _ {\cosh}^{(r)}(d,t)/\sinh(dL/2) \asymp N(t)^{1/2-d}/\ln N(t) \to +\infty$ on $0 < d < \frac{1}{2}$, the true phase-blind lower bound collapses to $0$.
+3. **True Preissmann Constant and Citation:** Preissmann (1984, *Enseign. Math. (2)* **30**, 95–113) proved $c _ {\mathrm{MV}} = \pi\sqrt{1 + \frac{2}{3}\sqrt{\frac{6}{5}}} = 4.13247436208154\dots$ (never cite $\frac{4}{3}\sqrt{6}$ or *J. Number Theory* **19**).
+4. **Failure of Pointwise Gallagher Transfer:** While $1 + 2d > 1$ damps mean-square windows $\Delta T \gg N(T)^{1-2d}$ (giving Bohr–Landau / Carlson zero-density $N(\sigma, T) = o(T){}$), Gallagher's Sobolev term $\sqrt{\int _ I \lvert F\rvert^2 \int _ I \lvert F'\rvert^2}$ is bounded below by $2c _ {\mathrm{MV}}\sqrt{\mathcal{W} _ {\mathrm{MV}}\mathcal{W} _ {\mathrm{MV}}'} \asymp N(T)^{1-2d} \to +\infty$ for **every** $\Delta T > 0$.
 
-$$\frac{\mathcal{H} _ {mn}^+(d,t)}{\mathcal{D} _ {1,1}(d,t)} < \left(1 - \frac{\ln(mn)}{\ln(t/2\pi)}\right)(mn)^{-d} < (mn)^{-d} \le 2^{-d} < 1.$$
-
-For the smooth order $r$ Möbius mollifier $P_r(x) = 1 - (1-x)^r$, the Dirichlet convolution coefficients $b_n^{(r)}(X) = \sum _ {k \mid n,  k \le X} \mu(k)P_r(\frac{\ln(X/k)}{\ln X})$ satisfy $b_1^{(r)}(X) \equiv 1$ and, for $2 \le n \le X$:
-
-$$b_n^{(r)}(X) = \frac{\Lambda_r(n)}{(\ln X)^r}, \qquad \Lambda_r(n) := -\sum _ {k \mid n} \mu(k)(\ln k)^r, \qquad \lvert\Lambda_r(n)\rvert \equiv (-1)^{\omega(n)-1}\Lambda_r(n) \le \left(\ln\mathrm{rad}(n)\right)^r \le (\ln n)^r,$$
-
-with $\Lambda_r(n) = 0$ whenever $\omega(n) > r$ and $\sum _ {n \le x}\lvert\Lambda_r(n)\rvert \sim \left(\sum _ {m=1}^r \frac{s(r,m)}{\Gamma(r)}\right)x(\ln x)^{r-1} = r x (\ln x)^{r-1}$.
-
-### 2.2 Exact Bilinear Rank-2 Factorization and Phase Transition at $d = \frac{1}{4}$ (Theorems 3.1 & 3.2)
-
-Under the integral operator $\frac{2}{d^2}\int_0^d u (\cdot) \mathrm{d}u$, each hyperbolic mode $\mathrm{sinc} _ {\mathrm{hyp}}(u\alpha)$ is multiplied by the hyperbolic low-pass filter $\mathcal{F} _ {\mathrm{int}}(d\alpha) = \frac{\tanh(d\alpha/2)}{d\alpha/2} \in (0, 1)$, and the integrated cross-term weight factors identically as:
-
-$$w _ {mn}^{\mathrm{int}}(d,t) \equiv \frac{2\left(\cosh\left(d\omega_m(t)\right)\cosh\left(d\omega_n(t)\right) - 1\right)}{d^2}.$$
-
-Consequently, the $\mathcal{O}(N(t)^2)$ double sums $S _ {1,\mathrm{off}}^{\mathrm{int},(r)}(d,t)$ and $S _ {2,\mathrm{off}}^{\mathrm{int},(r)}(d,t)$ collapse to the $\mathcal{O}(N(t))$ one-dimensional sums $\Sigma _ {\cosh}^{(r)}(d,t) := \sum _ {n=2}^{N(t)} \frac{\lvert\Lambda_r(n)\rvert}{\sqrt{n}}\cosh(d\omega_n(t))$ and $\Sigma_0^{(r)}(t) := \sum _ {n=2}^{N(t)} \frac{\lvert\Lambda_r(n)\rvert}{\sqrt{n}}$:
-
-$$S _ {1,\mathrm{off}}^{\mathrm{int},(r)}(d,t) \equiv \frac{4}{d^2}\left[\cosh\left(d\omega_1(t)\right)\Sigma _ {\cosh}^{(r)}(d,t) - \Sigma_0^{(r)}(t)\right], \qquad S _ {2,\mathrm{off}}^{\mathrm{int},(r)}(d,t) \equiv \frac{2}{d^2}\left[\left(\Sigma _ {\cosh}^{(r)}(d,t)\right)^2 - \left(\Sigma_0^{(r)}(t)\right)^2\right] - B_2^{\mathrm{int},(r)}(d,t),$$
-
-and obey the Euler–Maclaurin scaling $\frac{S _ {2,\mathrm{off}}^{\mathrm{int},(r)}(d,t)}{(\mathcal{D} _ {1,1}^{\mathrm{int}}(d,t))^2} \sim \frac{256r^2 d^4(1-2d^2)}{(1-4d^2)^2}N(t)^{1-4d}(\ln N(t))^{2(r-1)}$ (with pure $\cosh$-envelope ratio $\frac{S _ {2,\mathrm{tot}}^{\cosh,(r)}(d,t)}{(\mathcal{D} _ {1,1}^{\mathrm{int}}(d,t))^2} \sim \frac{32r^2 d^2}{(1-4d^2)^2}N(t)^{1-4d}(\ln N(t))^{2(r-1)}$), exhibiting a sharp phase transition at $d = \frac{1}{4}$ ($\sigma = \frac{3}{4}$).
-
-### 2.3 Pure-Square Completion and Elimination of $1 + \sqrt{2}$ (Theorem 4.1)
-
-Defining the Euclidean harmonic vectors $\psi_n(d,t) := \frac{b_n}{\sqrt{n}}\left(\sqrt{2}\cosh(d\omega_n(t))\cos\phi_n(t),  \sqrt{2}\sinh(d\omega_n(t))\sin\phi_n(t)\right) \in \mathbb{R}^2$ and $\Psi _ {\ge 2}(d,t) := \sum _ {n=2}^{N(t)} \psi_n(d,t)$, the $+1$ ground-state contribution at $u = 0$ cancels the $-1$ boundary term in $w _ {mn}^{\mathrm{int}}(d,t)$ pair by pair:
-
-$$\widetilde{\mathcal{E}} _ {\mathcal{M},\mathrm{main}}(d,t) \equiv \frac{1}{d^2}\left\lVert\psi_1(d,t) + \Psi _ {\ge 2}(d,t)\right\rVert^2 = \frac{1}{d^2}\lVert\psi_1\rVert^2 + \frac{2}{d^2}\langle\psi_1, \Psi _ {\ge 2}\rangle + \frac{1}{d^2}\left\lVert\Psi _ {\ge 2}(d,t)\right\rVert^2 \ge \frac{1}{d^2}\left(\max\left(0,  \lVert\psi_1\rVert - \lVert\Psi _ {\ge 2}\rVert\right)\right)^2,$$
-
-eliminating the factor $1 + \sqrt{2} = 2.414213562373095\dots$ identically: $\mathcal{Q} _ r^{\mathrm{cosh,sq}}(d,t) = \frac{\Sigma _ {\cosh}^{(r)}(d,t)}{\cosh(d\omega_1(t))} \equiv \frac{1}{1+\sqrt{2}}\mathcal{Q} _ r^{\mathrm{cosh,old}}(d,t)$.
-
-### 2.4 The $1 + 2d > 1$ Exponent Jump in $L^2$ and Preissmann–Montgomery–Vaughan Bounds (Theorems 5.1 & 5.2)
-
-For the higher harmonic shells $Z _ {\ge 2}(d,t) = \sum _ {n=2}^{N(t)} b_n(n^{-(1/2+d)}\mathrm{e}^{-\mathrm{i} t\ln n} + \rho _ \Gamma(d,t)n^{-(1/2-d)}\mathrm{e}^{-\mathrm{i}(2\theta(t)-t\ln n)})$, the forward and reflected diagonal $L^2$ energies satisfy for every $d > 0$:
-
-$$\mathcal{E} _ {\mathrm{diag}}^{\mathrm{fwd}}(d,t) := \sum _ {n=2}^{N(t)} \frac{b_n^2}{n^{1+2d}} < \frac{\mathcal{S} _ {\Lambda_r^2}(d)}{(\ln X)^{2r}} < \infty, \qquad \mathcal{E} _ {\mathrm{diag}}^{\mathrm{ref}}(d,t) := \rho _ \Gamma(d,t)^2\sum _ {n=2}^{N(t)} \frac{b_n^2}{n^{1-2d}} < \frac{\max b_n^2}{2d} N(t)^{-2d} \longrightarrow 0.$$
-
-By the generalized Hilbert inequality with Preissmann's sharp constant $c _ {\mathrm{MV}} = \frac{4}{3}\sqrt{6} \approx 3.2659863237 < \pi\sqrt{2}$, the mean square over the boxcar window $I = [t - \Delta T/2, t + \Delta T/2]$ obeys $\frac{1}{\Delta T}\int_I \lvert D(\tau)\rvert^2 \mathrm{d}\tau \le \mathcal{E} _ {\mathrm{diag}}(d,t) + \frac{2c _ {\mathrm{MV}}}{\Delta T}(\mathcal{W} _ {\mathrm{MV}}(d,t) + \frac{1}{2}\mathcal{E} _ {\mathrm{diag}}(d,t))$ (with $2c _ {\mathrm{MV}}$ replaced by $c _ {\mathrm{MV}}$ under Fejér tent smoothing) and $\mathcal{W} _ {\mathrm{MV}}^{\mathrm{fwd}}(d,t) = \sum _ {n=2}^{N(t)} b_n^2 n^{-2d} \asymp N(t)^{1-2d} = o(t^{1/2})$, forcing $X _ {\mathrm{MV},\infty}^{(r)}(d) = \exp([\mathcal{S} _ {\Lambda_r^2}(d)]^{1/2r}) = \mathcal{O}(1)$ and $\theta _ {\mathrm{MV}}^{(r)}(d,t) \sim \frac{[\mathcal{S} _ {\Lambda_r^2}(d)]^{1/2r}}{\ln(t/2\pi)} \to 0$ as $t \to \infty$.
-
-## 3. Reproducible Verification Workflow
-
-Run the standalone verification and figure-generation suite from the repository root:
+## 4. Verification Command
 
 ```bash
 python scripts/verify_paper8_bilinear_rank2_wronskian.py

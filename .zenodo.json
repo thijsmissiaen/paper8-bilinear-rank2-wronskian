@@ -1,6 +1,6 @@
 {
-  "title": "Bilinear Rank-2 Factorization of Integrated Wronskian Kernels, Pure-Square Completion, and the 1+2d > 1 Montgomery-Vaughan Exponent Jump in the Critical Strip",
-  "description": "Paper VIII of the series on the Transverse Wronskian of Riemann's Xi-Function. Establishes the universal (mn)^{-d} <= 2^{-d} hyperbolic diagonal advantage, order-r generalized von Mangoldt scaling b_n^{(r)}(X) = Lambda_r(n)/(ln X)^r and Stirling-Dirichlet convolution laws, the exact bilinear rank-2 factorization w_{mn}^{int}(d,t) = 2(cosh(d*omega_m)cosh(d*omega_n)-1)/d^2 reducing O(N(t)^2) off-diagonal double sums to O(N(t)) one-dimensional prefix sums with an Euler-Maclaurin phase transition N(t)^{1-4d} at d = 1/4 (sigma = 3/4), the pure-square completion ||psi_1 + Psi_{>=2}||^2 that cancels the -1 boundary term identically pair by pair against the critical-line ground state and eliminates the 1 + sqrt(2) root penalty, and the 1 + 2d > 1 exponent jump in L^2 combined with Preissmann's sharp Montgomery-Vaughan Hilbert constant c_MV = (4/3)*sqrt(6) and Gallagher-Sobolev pointwise transfer up to t = 10^8.",
+  "title": "Bilinear Rank-2 Factorization of Dirichlet Energy Kernels, Reverse-Triangle and Sieve-Horizon Obstructions, Preissmann-Montgomery-Vaughan L^2 Bounds, and Failure of Pointwise Gallagher Transfer",
+  "description": "Establishes the exact rank-2 factorization w_{mn}^{int}(d,t) = 2(cosh(d*omega_m)cosh(d*omega_n)-1)/d^2 reducing O(N^2) off-diagonal Dirichlet energy sums to O(N) prefix sums and the Euclidean representation (1/4)|S_N(d,t)|^2 = ||psi_1 + Psi_{>=2}||^2, distinguishes the squarefree-divisor sieve tilde_Lambda_r(n) from Bombieri-Selberg's Lambda_r^{BS}(n) and proves the O(1) breakdown of b_n^{(r)}(X) = tilde_Lambda_r(n)/(ln X)^r for n > X, proves that ||psi_1||_min = sinh(dL/2) causes phase-blind reverse-triangle lower bounds to collapse on 0 < d < 1/2, and uses Preissmann's sharp Hilbert constant c_MV = pi*sqrt(1 + (2/3)*sqrt(6/5)) to separate Bohr-Landau/Carlson L^2 window suppression from the O(N^{1-2d}) divergence of Gallagher's Sobolev cross-term.",
   "upload_type": "publication",
   "publication_type": "preprint",
   "creators": [
@@ -23,14 +23,13 @@
     "Riemann Xi-function",
     "Transverse Wronskian",
     "Bilinear rank-2 factorization",
-    "Pure-square completion",
     "Generalized von Mangoldt function",
     "Montgomery-Vaughan Hilbert inequality",
     "Preissmann constant",
-    "Gallagher-Sobolev inequality",
+    "Gallagher Sobolev inequality",
+    "Bohr-Landau zero-density method",
     "MSC 11M06",
-    "MSC 11N36",
-    "MSC 30D15"
+    "MSC 11N36"
   ],
-  "version": "1.0.0"
+  "version": "2.0.0"
 }
